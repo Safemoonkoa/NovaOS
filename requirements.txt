@@ -1,0 +1,11 @@
+pyautogui>=0.9.54
+pynput>=1.7.6
+mss>=9.0.1
+pillow>=10.2.0
+ollama>=0.1.7
+chromadb>=0.4.24
+gradio>=4.19.2
+rich>=13.7.0
+python-dotenv>=1.0.1
+langgraph>=0.0.26
+easyocr>=1.7.1
