@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: novaos-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  novaos:
+    build: .
+    container_name: novaos-agent
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - DEFAULT_MODEL=${DEFAULT_MODEL:-llama3.2}
+      - VISION_MODEL=${VISION_MODEL:-llava:13b}
+      - SAFE_MODE=${SAFE_MODE:-true}
+    volumes:
+      - novaos_data:/root/.novaos
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    env_file:
+      - .env
+    ports:
+      - "7860:7860"
+    restart: unless-stopped
+    command: novaos dashboard --port 7860
+
+volumes:
+  ollama_data:
+  novaos_data:

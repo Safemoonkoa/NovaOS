@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+*.log
+.DS_Store
+Thumbs.db
+~/.novaos/
+.novaos/
+*.png
+!docs/
